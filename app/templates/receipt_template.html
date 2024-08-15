@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кассовый чек</title>
+    <style>
+        body {
+            font-family: monospace, Arial, sans-serif;
+            width: 250px; /* Ширина для более узкого чека */
+            margin: 0 auto;
+            padding: 10px;
+            border: 1px solid #000;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        }
+        .header, .footer {
+            text-align: center;
+            font-size: 12px;
+        }
+        .header h1 {
+            font-size: 14px;
+            margin: 0;
+        }
+        .header p {
+            margin: 2px 0;
+        }
+        .items {
+            margin: 10px 0;
+            border-bottom: 1px dashed #000;
+        }
+        .items .item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin: 2px 0;
+        }
+        .items .item .name {
+            text-align: left;
+            flex: 2;
+        }
+        .items .item .quantity {
+            text-align: center;
+            flex: 1;
+        }
+        .items .item .price {
+            text-align: right;
+            flex: 1;
+        }
+        .total, .payment {
+            text-align: right;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        .date-time {
+            text-align: right;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ООО "КОМПАНИЯ К"</h1>
+        <p>Добро пожаловать</p>
+        <p>ККМ 00075411</p>
+        <p>#3969</p>
+        <p>ИНН 1087746942040</p>
+        <p>ЭКЛЗ 3851495566</p>
+    </div>
+
+    <div class="date-time">
+        <p>Дата: {{ receipt_date }}</p>
+    </div>
+
+    <div class="items">
+        {% for item in items %}
+        <div class="item">
+            <div class="name">{{ item.title }}</div>
+            <div class="quantity">{{ item.quantity }}</div>
+            <div class="price">={{ item.total_price }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="total">
+        <p>ИТОГ:</p>
+        <p>{{ total_price }}</p>
+    </div>
+
+    <div class="payment">
+        <p>НАЛИЧНЫМИ:</p>
+        <p>{{ total_price }}</p>
+    </div>
+
+    <div class="footer">
+        <p>***********************</p>
+        <p>00003751# 05970</p>
+    </div>
+</body>
+</html>
